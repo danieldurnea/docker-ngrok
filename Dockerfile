@@ -15,7 +15,7 @@ COPY            --from=ngrok /ngrok /bin/ngrok
 COPY            start.sh /
         
 RUN             mkdir -p /home/ngrok /home/ngrok/.ngrok2 && \
-                        printf 'web_addr: 0.0.0.0:4551' > /home/ngrok/.ngrok2/ngrok.yml && \
+                        printf 'web_addr: 0.0.0.0:22' > /home/ngrok/.ngrok2/ngrok.yml && \
                         addgroup -g 4551 -S ngrok && \
                 adduser -u 4551 -S ngrok -G ngrok -h /home/ngrok -s /bin/ash && \
                         chown -R ngrok:ngrok /home/ngrok && \
@@ -23,6 +23,6 @@ RUN             mkdir -p /home/ngrok /home/ngrok/.ngrok2 && \
 
 USER            ngrok:ngrok
 
-EXPOSE          4551
+EXPOSE         22
 
 ENTRYPOINT      ["/start.sh"]
